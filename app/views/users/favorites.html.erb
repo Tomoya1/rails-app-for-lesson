@@ -1,0 +1,32 @@
+<ul>
+  <li>
+  <%= link_to user_path(@user) do %>
+  <div class="text">投稿数</div>
+  <div class="num"><%= @user.tweets.count %></div>
+  <% end %>
+  </li>
+  <li>
+  <%= link_to favorites_user_path(@user) do %>
+  <div class="text">いいね一覧</div>
+  <div class="num"><%= @user.favorites.count %></div>
+  <% end %>
+  </li>
+</ul>
+<% if @user.favorites.empty? %>
+  <div class="list-group-item">
+まだお気に入りされた投稿はありません
+  </div>
+<% end %>
+
+<% @user.favorites.map {|f| f.tweet}.each do |tweet| %>
+  <h4 class="user">
+    <span class="user-email">
+    <%= link_to tweet.user.email, user_path(tweet.user) %>
+  </span>
+  <span class="user-id"><%= tweet.user.email %></span>
+  </h4>
+  <div class="post_body">
+    <%= tweet.body %>
+  </div>
+  <% end %>
+
