@@ -3,8 +3,18 @@
               <%= devise_error_messages! %>
 
               <div class="field col-md-offset-4 col-md-4">
+              <%= f.label :name %><br />
+              <%= f.text_field  :name, :placeholder => "名前orニックネーム", autofocus: true, maxlength: "30" %>
+              </div>
+
+              <div class="field col-md-offset-4 col-md-4">
+              <%= f.label :image, "ユーザー画像" %>
+              <%= f.file_field :image %>
+              </div>
+
+              <div class="field col-md-offset-4 col-md-4">
                 <%= f.label :email %><br />
-                <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+                <%= f.email_field :email, :placeholder => "メールアドレス", autofocus: true, class: 'form-control' %>
               </div>
 
               <div class="field col-md-offset-4 col-md-4">
@@ -12,12 +22,12 @@
                 <% if @minimum_password_length %>
                 <em>(<%= @minimum_password_length %> characters minimum)</em>
                 <% end %><br />
-                <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+                <%= f.password_field :password, :placeholder => "パスワード", autocomplete: "off", class: 'form-control' %>
               </div>
 
               <div class="field col-md-offset-4 col-md-4">
                 <%= f.label :password_confirmation %><br />
-                <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
+                <%= f.password_field :password_confirmation, :placeholder => "パスワード確認", autocomplete: "off", class: 'form-control' %>
               </div>
 
               <br>

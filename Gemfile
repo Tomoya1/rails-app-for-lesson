@@ -25,6 +25,9 @@ gem 'devise'
 # kaminariを追加
 gem 'kaminari'
 
+gem 'carrierwave'
+gem 'rmagick'
+
 
 
 # Use jquery as the JavaScript library

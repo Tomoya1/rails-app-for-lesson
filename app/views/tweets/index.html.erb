@@ -9,7 +9,7 @@
               <span class="user-name">
                 <strong>
                   <!-- ↓current_userのemailを表示しよう -->
-                  <%= current_user.email %>
+                  <%= current_user.name %>
 
                 </strong>
               </span>
@@ -69,10 +69,11 @@
 
           <div class="list-group-item">
             <h4 class="user">
+                <%= image_tag t.user.image.url, class:"profile_img" %>
               <span class="user-name">              
                 <strong>
                   <!-- ↓ツイートに紐付いたUserのemailの表示 -->
-                  <%= t.user.email %>
+                  <%= t.user.name %>
 
                 </strong>
               </span>
@@ -96,7 +97,7 @@
                   <% if t.favorited_by? current_user %>
 
                     <!-- ↓お気に入り解除ボタンの設置 -->
-                    <%= link_to "お気に入りの解除", "/tweet/favorites/#{t.id}", method: :delete %>
+                    <%= link_to "お気に入りの解除", tweet_favorites_path(t), method: :delete %>
                     <%= link_to "削除", "/tweets/#{t.id}", method: :delete, "data-confirm" => "本当に削除しますか？" %>
                   <% else %>
 

@@ -50,7 +50,7 @@ class TweetsController < ApplicationController
   private
     #ストロングパラメーターを設定
     def tweet_params
-      params.require(:tweet).permit(:body)
+      params.require(:tweet).permit(:body, :user_id, :interest_list)
 
     end
 end
