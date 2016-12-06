@@ -24,7 +24,7 @@
                   <div class="num">
                     <!-- ↓全てのツイートの数を数える -->
                     <!-- わからなければ「rails count」で検索！ -->
-                    <%= @tweets.count %>
+                    <%= @tweets.total_count %>
 
                   </div>
                 </div>
@@ -96,11 +96,13 @@
                   <% if t.favorited_by? current_user %>
 
                     <!-- ↓お気に入り解除ボタンの設置 -->
-                    <%= link_to "お気に入りの解除", tweet_favorites_path(t), method: :delete %>
+                    <%= link_to "お気に入りの解除", "/tweet/favorites/#{t.id}", method: :delete %>
+                    <%= link_to "削除", "/tweets/#{t.id}", method: :delete, "data-confirm" => "本当に削除しますか？" %>
                   <% else %>
 
                     <!-- ↓お気に入り登録するボタンの設置 -->
                     <%= link_to "お気に入りの登録", tweet_favorites_path(t), method: :post %>
+                    <%= link_to "削除", "/tweets/#{t.id}", method: :delete, "data-confirm" => "本当に削除しますか？" %>
                   <% end %>
                </div>
               <!-- ↑お気に入りボタンの実装（発展課題） -->
@@ -110,6 +112,7 @@
       <% end %>
         <!-- ↑each終わり  endで閉じる -->
       <!-- ↓ページネーションするための記述をしてください -->
+      <%= paginate @tweets %>
 
 
     </div>

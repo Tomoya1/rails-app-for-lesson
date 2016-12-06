@@ -23,6 +23,7 @@ gem 'devise'
 
 
 # kaminariを追加
+gem 'kaminari'
 
 
 

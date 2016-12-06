@@ -5,7 +5,7 @@ class TweetsController < ApplicationController
 
   def index
     # allを使ってTweetの全レコードの取得しインスタンス変数に格納
-    @tweets = Tweet.all
+    @tweets = Tweet.includes(:user).page(params[:page]).per(5).order("created_at DESC")
       #→ ページングする場合は...  →  参照：「ページング機能を実装しよう」
         #→  並び順かえたい場合は...  →  「rails order」で検索
               
@@ -36,10 +36,10 @@ class TweetsController < ApplicationController
 
   def destroy
     # レコードを１件取得　→ 参照：week2「データの保存、抽出」
-    @tweet = Tweet.find(params[:id])
+    tweet = Tweet.find(params[:id])
 
     # 取得したレコードの削除　→  参照：week2「データの保存、抽出」
-    @tweet.destroy
+    tweet.destroy
 
     # ツイート一覧へリダイレクト　→　参照：week2「簡易掲示板を作ろう３」
     redirect_to tweets_path

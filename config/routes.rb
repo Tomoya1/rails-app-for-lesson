@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # ツイート一覧画面へのルーティングを定義
   resources :tweets do
-    resources :favorites
+    resources :favorites, only: [:create, :destroy]
   end
 
   resources :users, only: [:index, :show] do
