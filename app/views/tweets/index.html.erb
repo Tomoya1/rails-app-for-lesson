@@ -98,14 +98,17 @@
 
                     <!-- ↓お気に入り解除ボタンの設置 -->
                     <%= link_to "お気に入りの解除", tweet_favorites_path(t), method: :delete %>
-                    <%= link_to "削除", "/tweets/#{t.id}", method: :delete, "data-confirm" => "本当に削除しますか？" %>
                   <% else %>
 
                     <!-- ↓お気に入り登録するボタンの設置 -->
                     <%= link_to "お気に入りの登録", tweet_favorites_path(t), method: :post %>
-                    <%= link_to "削除", "/tweets/#{t.id}", method: :delete, "data-confirm" => "本当に削除しますか？" %>
                   <% end %>
-               </div>
+
+                  <% if user_signed_in? && current_user.id == t.user_id %>
+
+                  <%= link_to '削除', "tweets/#{t.id}", method: :delete, "data-confirm" => "本当に削除しますか？" %>
+                  <% end %>
+                </div>
               <!-- ↑お気に入りボタンの実装（発展課題） -->
 
             </div>
